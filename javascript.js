@@ -5,7 +5,7 @@ let userChoice = prompt("Rock, paper, or scissors?");
 if (userChoice == undefined || userChoice == "") {
   console.log("Invalid input.");
 } else {
-  userChoice = userChoice.toUpperCase();
+  userChoice = userChoice.toUpperCase().trim();
 
   if (userChoice == CHOICES[0]
     || userChoice == CHOICES[1]
