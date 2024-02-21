@@ -2,6 +2,9 @@ const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
 
 let userChoice;
 let computerChoice;
+let round = 0;
+let userPoints = 0;
+let computerPoints = 0;
 
 function getComputerChoice() {
   let random = Math.floor(Math.random() * 3); // Generate number from 0 up to 2
@@ -10,6 +13,7 @@ function getComputerChoice() {
 
 function playRound(playerSelection, computerSelection) {
   let roundResult = `User chose ${playerSelection} and computer chose ${computerSelection}. `;
+  round++;
   
   // same choice
   if (playerSelection == computerSelection) {
@@ -22,10 +26,12 @@ function playRound(playerSelection, computerSelection) {
     || playerSelection == CHOICES[2] && computerSelection == CHOICES[0]) {
     roundResult += `\n${computerSelection} beats ${playerSelection}. `;
     roundResult += "\nComputer wins.";
+    computerPoints++;
     // Other case where user wins
   } else {
     roundResult += `\n${playerSelection} beats ${computerSelection}. `;
     roundResult += "\nUser wins.";
+    userPoints++;
   }
   return roundResult;
 }
@@ -69,4 +75,9 @@ while(stillPlaying) {
   confirm("Play another game?") ? playGame() : stillPlaying = false;
 }
 
-console.log("Game ended.")
+let finalResult = `Game ended with a total of ${round} round(s).
+User with ${userPoints} point(s).
+Computer with ${computerPoints} point(s).
+${round-computerPoints-userPoints} draw(s).`;
+
+console.log(finalResult);
