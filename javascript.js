@@ -8,6 +8,7 @@ function getComputerChoice() {
   return CHOICES[random];
 }
 
+// Ensures user input is one of the choices. Case insensitive
 if (userChoice == undefined || userChoice == "") {
   console.log("Invalid input.");
 } else {
