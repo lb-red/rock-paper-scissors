@@ -13,17 +13,19 @@ function playRound(playerSelection, computerSelection) {
   
   // same choice
   if (playerSelection == computerSelection) {
-    result += "It's a draw.";
+    result += "\nIt's a draw.";
     // Rock vs Paper
   } else if (playerSelection == CHOICES[0] && computerSelection == CHOICES[1]
     // Paper vs Scissors
     || playerSelection == CHOICES[1] && computerSelection == CHOICES[2]
     // Scissors vs Rock
     || playerSelection == CHOICES[2] && computerSelection == CHOICES[0]) {
-    result += "Computer wins.";
+    result += `\n${computerSelection} beats ${playerSelection}. `;
+    result += "\nComputer wins.";
     // Other case where user wins
   } else {
-    result += "User wins.";
+    result += `\n${playerSelection} beats ${computerSelection}. `;
+    result += "\nUser wins.";
   }
   return result;
 }
