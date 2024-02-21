@@ -1,7 +1,7 @@
 const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
 
-let userChoice = prompt("Rock, paper, or scissors?");
-let computerChoice = getComputerChoice();
+let userChoice;
+let computerChoice;
 
 function getComputerChoice() {
   let random = Math.floor(Math.random() * 3); // Generate number from 0 up to 2
@@ -9,40 +9,64 @@ function getComputerChoice() {
 }
 
 function playRound(playerSelection, computerSelection) {
-  let result = `User chose ${playerSelection} and computer chose ${computerSelection}. `;
+  let roundResult = `User chose ${playerSelection} and computer chose ${computerSelection}. `;
   
   // same choice
   if (playerSelection == computerSelection) {
-    result += "\nIt's a draw.";
+    roundResult += "\nIt's a draw.";
     // Rock vs Paper
   } else if (playerSelection == CHOICES[0] && computerSelection == CHOICES[1]
     // Paper vs Scissors
     || playerSelection == CHOICES[1] && computerSelection == CHOICES[2]
     // Scissors vs Rock
     || playerSelection == CHOICES[2] && computerSelection == CHOICES[0]) {
-    result += `\n${computerSelection} beats ${playerSelection}. `;
-    result += "\nComputer wins.";
+    roundResult += `\n${computerSelection} beats ${playerSelection}. `;
+    roundResult += "\nComputer wins.";
     // Other case where user wins
   } else {
-    result += `\n${playerSelection} beats ${computerSelection}. `;
-    result += "\nUser wins.";
+    roundResult += `\n${playerSelection} beats ${computerSelection}. `;
+    roundResult += "\nUser wins.";
   }
-  return result;
+  return roundResult;
 }
 
-// Ensures user input is one of the choices. Case insensitive
-if (userChoice == undefined || userChoice == "") {
-  console.log("Invalid input.");
-} else {
-  userChoice = userChoice.toUpperCase().trim();
+function isInputValid(input) {
+  // Ensures user input is one of the choices. Case insensitive
+  if (input == undefined || input == "") {
+    return false;
+  } else {
+    input = input.toUpperCase().trim();
+  
+    if (input == CHOICES[0]
+      || input == CHOICES[1]
+      || input == CHOICES[2]) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+}
 
-  if (userChoice == CHOICES[0]
-    || userChoice == CHOICES[1]
-    || userChoice == CHOICES[2]) {
-    result = playRound(userChoice, computerChoice);
+function playGame() {
+  userChoice = prompt("Rock, paper, or scissors?");
+  computerChoice = getComputerChoice();
+
+  if (isInputValid(userChoice)) {
+    userChoice = userChoice.toUpperCase().trim();
+    let result = playRound(userChoice, computerChoice);
     console.log(result);
     alert(result);
   } else {
     console.log("Not in the choices.");
+    alert("Not in the choices.");
   }
 }
+
+playGame();
+let stillPlaying = true;
+
+while(stillPlaying) {
+  confirm("Play another game?") ? playGame() : stillPlaying = false;
+}
+
+console.log("Game ended.")
