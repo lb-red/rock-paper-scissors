@@ -1,4 +1,7 @@
 const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
+const ROCK = 0;
+const PAPER = 1;
+const SCISSORS = 2;
 
 let userChoice;
 let computerChoice;
@@ -7,7 +10,7 @@ let userPoints = 0;
 let computerPoints = 0;
 
 function getComputerChoice() {
-  let random = Math.floor(Math.random() * 3); // Generate number from 0 up to 2
+  const random = Math.floor(Math.random() * 3); // Generate number from 0 up to 2
   return CHOICES[random];
 }
 
@@ -19,11 +22,11 @@ function playRound(playerSelection, computerSelection) {
   if (playerSelection == computerSelection) {
     roundResult += "\nIt's a draw.";
     // Rock vs Paper
-  } else if (playerSelection == CHOICES[0] && computerSelection == CHOICES[1]
+  } else if (playerSelection == CHOICES[ROCK] && computerSelection == CHOICES[PAPER]
     // Paper vs Scissors
-    || playerSelection == CHOICES[1] && computerSelection == CHOICES[2]
+    || playerSelection == CHOICES[PAPER] && computerSelection == CHOICES[SCISSORS]
     // Scissors vs Rock
-    || playerSelection == CHOICES[2] && computerSelection == CHOICES[0]) {
+    || playerSelection == CHOICES[SCISSORS] && computerSelection == CHOICES[ROCK]) {
     roundResult += `\n${computerSelection} beats ${playerSelection}. `;
     roundResult += "\nComputer wins.";
     computerPoints++;
@@ -38,27 +41,20 @@ function playRound(playerSelection, computerSelection) {
 
 function isInputValid(input) {
   // Ensures user input is one of the choices. Case insensitive
-  if (input == undefined || input == "") {
-    return false;
+  if (input == CHOICES[ROCK]
+      || input == CHOICES[PAPER]
+      || input == CHOICES[SCISSORS]) {
+    return true;
   } else {
-    input = input.toUpperCase().trim();
-  
-    if (input == CHOICES[0]
-      || input == CHOICES[1]
-      || input == CHOICES[2]) {
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   }
 }
 
 function playGame() {
-  userChoice = prompt("Rock, paper, or scissors?");
+  userChoice = String(prompt("Rock, paper, or scissors?")).toUpperCase().trim();
   computerChoice = getComputerChoice();
 
   if (isInputValid(userChoice)) {
-    userChoice = userChoice.toUpperCase().trim();
     let result = playRound(userChoice, computerChoice);
     console.log(result);
     alert(result);
