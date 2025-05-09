@@ -1,23 +1,22 @@
-const btnChoice = document.querySelector(".btnChoice");
-btnChoice.addEventListener("click", playRound(btnChoice.textContent));
+const choicesButton = document.querySelectorAll(".btnChoice");
+choicesButton.forEach(btn => {
+  btn.onclick = playRound(btn.textContent.toUpperCase());
+})
 
 const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
 const ROCK = 0;
 const PAPER = 1;
 const SCISSORS = 2;
 
-let userChoice;
-let computerChoice;
 let round = 0;
 let userPoints = 0;
 let computerPoints = 0;
 
-function getComputerChoice() {
-  const random = Math.floor(Math.random() * 3); // Generate number from 0 up to 2
-  return CHOICES[random];
-}
+function playRound(playerSelection) {
+  console.log(playerSelection);
+  const computerChoice = Math.floor(Math.random() * CHOICES.length); 
+  const computerSelection = CHOICES[computerChoice];
 
-function playRound(playerSelection, computerSelection) {
   let roundResult = `User chose ${playerSelection} and computer chose ${computerSelection}. `;
   round++;
   
@@ -41,11 +40,6 @@ function playRound(playerSelection, computerSelection) {
   }
   return roundResult;
 }
-
-function playGame() {
-}
-
-playGame();
 
 let finalResult = `Game ended with a total of ${round} round(s).
 User with ${userPoints} point(s).
