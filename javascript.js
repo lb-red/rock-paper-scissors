@@ -1,3 +1,6 @@
+const btnChoice = document.querySelector(".btnChoice");
+btnChoice.addEventListener("click", playRound(btnChoice.textContent));
+
 const CHOICES = ["ROCK", "PAPER", "SCISSORS"];
 const ROCK = 0;
 const PAPER = 1;
