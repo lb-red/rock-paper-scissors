@@ -39,31 +39,7 @@ function playRound(playerSelection, computerSelection) {
   return roundResult;
 }
 
-function isInputValid(input) {
-  // Ensures user input is one of the choices. Case insensitive
-  for (var i = 0; i < CHOICES.length; i++) {
-    if (input == CHOICES[i]) return true;
-  }
-  return false;
-}
-
 function playGame() {
-  computerChoice = getComputerChoice();
-  inputValidated = false;
-
-  while(!inputValidated) {
-    userChoice = String(prompt("Rock, paper, or scissors?")).toUpperCase().trim();
-    inputValidated = isInputValid(userChoice);
-
-    if (inputValidated) {
-      let result = playRound(userChoice, computerChoice);
-      console.log(result);
-      alert(result);
-    } else {
-      console.log("Not in the choices.");
-      alert("Not in the choices.");
-    }
-  }
 }
 
 playGame();
