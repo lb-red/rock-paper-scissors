@@ -41,35 +41,32 @@ function playRound(playerSelection, computerSelection) {
 
 function isInputValid(input) {
   // Ensures user input is one of the choices. Case insensitive
-  if (input == CHOICES[ROCK]
-      || input == CHOICES[PAPER]
-      || input == CHOICES[SCISSORS]) {
-    return true;
-  } else {
-    return false;
+  for (var i = 0; i < CHOICES.length; i++) {
+    if (input == CHOICES[i]) return true;
   }
+  return false;
 }
 
 function playGame() {
-  userChoice = String(prompt("Rock, paper, or scissors?")).toUpperCase().trim();
   computerChoice = getComputerChoice();
+  inputValidated = false;
 
-  if (isInputValid(userChoice)) {
-    let result = playRound(userChoice, computerChoice);
-    console.log(result);
-    alert(result);
-  } else {
-    console.log("Not in the choices.");
-    alert("Not in the choices.");
+  while(!inputValidated) {
+    userChoice = String(prompt("Rock, paper, or scissors?")).toUpperCase().trim();
+    inputValidated = isInputValid(userChoice);
+
+    if (inputValidated) {
+      let result = playRound(userChoice, computerChoice);
+      console.log(result);
+      alert(result);
+    } else {
+      console.log("Not in the choices.");
+      alert("Not in the choices.");
+    }
   }
 }
 
 playGame();
-let stillPlaying = true;
-
-while(stillPlaying) {
-  confirm("Play another game?") ? playGame() : stillPlaying = false;
-}
 
 let finalResult = `Game ended with a total of ${round} round(s).
 User with ${userPoints} point(s).
