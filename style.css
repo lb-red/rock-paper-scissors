@@ -1,0 +1,18 @@
+* {
+  /* border: dashed 2px rgba(168, 53, 0, 0.664); */
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-size: 20px;
+}
+
+h1 {
+  text-align: justify;
+}
+
+button {
+  background-color: transparent;
+  padding: 4px;
+}
