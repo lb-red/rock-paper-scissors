@@ -3,6 +3,7 @@ const ROCK = 0;
 const PAPER = 1;
 const SCISSORS = 2;
 
+const maxRounds = 5;
 let round = 0;
 let userPoints = 0;
 let computerPoints = 0;
@@ -16,6 +17,7 @@ choicesButton.forEach(btn => {
 const scoreText = document.querySelector("#score");
 const choicesText = document.querySelector("#players-choices");
 const roundWinnerText = document.querySelector("#round-winner");
+const announcementText = document.querySelector("#announcement");
 
 function playRound(playerSelection) {
   console.log(playerSelection);
@@ -49,4 +51,25 @@ function playRound(playerSelection) {
 
 function updateScore() {
   scoreText.textContent = `User: ${userPoints} --- Computer: ${computerPoints} --- Draw: ${roundDraws}`;
+
+  if (round == maxRounds) {
+    declareWinner();
+    disableButtons();
+  }
+}
+
+function declareWinner() {
+  let announcementMessage= `After ${maxRounds} rounds: `;
+  if (userPoints > computerPoints) announcementMessage += `User wins with ${userPoints} point(s)`;
+  else if (computerPoints > userPoints) announcementMessage += `Computer wins with ${computerPoints} point(s)`;
+  else announcementMessage += `It ended in a draw with both having ${userPoints} point(s)`;
+
+  announcementText.textContent = announcementMessage;
+}
+
+function disableButtons() {
+  const buttons = document.getElementsByClassName("choice");
+  const totalButtons = buttons.length;
+
+  for (let i=0; i<totalButtons; i++) buttons[i].disabled = true;
 }
