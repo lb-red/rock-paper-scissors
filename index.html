@@ -6,9 +6,14 @@
 </head>
 <body>
   <h1>Rock, Paper, Scissors game.</h1>
-  <div class="userChoices">
-    <button type="button" class="btnChoice" value="ROCK">Rock</button>
-    <button type="button" class="btnChoice" value="PAPER">Paper</button>
-    <button type="button" class="btnChoice" value="SCISSORS">Scissors</button>
+  <div class="scoreboard">
+    <h2 id="score">User: 0 --- Computer: 0 --- Draw: 0</h2>
+  </div>
+  <div class="user-choices">
+    <button type="button" class="choice" value="ROCK">Rock</button>
+    <button type="button" class="choice" value="PAPER">Paper</button>
+    <button type="button" class="choice" value="SCISSORS">Scissors</button>
+    <p id="players-choices">Computer chose?</p>
+    <p id="round-winner"></p>
   </div>
 </body>
